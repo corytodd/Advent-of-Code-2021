@@ -71,6 +71,45 @@ public class Day2Part1 : Day2
     }
 }
 
+/// <summary>
+///     Day two 2D navigation
+/// </summary>
+public class Day2Part2 : Day2 
+{
+    public Day2Part2(Input input) : base(2, 2, input)
+    {
+    }
+
+    /// <inheritdoc />
+    public override string Solve()
+    {
+        // Starts at 0,0,0
+        var position = new Position();
+
+        foreach (var nav in ReadNavigations())
+        {
+            switch (nav.Direction)
+            {
+                case Direction.Up:
+                    position.Aim -= nav.Distance;
+                    break;
+                case Direction.Down:
+                    position.Aim += nav.Distance;
+                    break;
+                case Direction.Forward:
+                    position.Horizontal += nav.Distance;
+                    position.Depth += position.Aim * nav.Distance;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        return position.DistanceTraveled.ToString();
+    }
+}
+
+
 public enum Direction {Up, Down, Forward}
 
 /// <summary>
@@ -104,6 +143,11 @@ public struct Position
     ///     Depth in units relative to start
     /// </summary>
     public int Depth;
+
+    /// <summary>
+    ///     Angle of travel in units relative to start
+    /// </summary>
+    public int Aim;
     
     /// <summary>
     ///     Distance moved from start

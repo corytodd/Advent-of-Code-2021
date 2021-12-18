@@ -28,4 +28,28 @@ public class Day2Tests
         // Assert
         Assert.AreEqual(expected, solution);
     }
+    
+    [Test]
+    public void Day2Part2Test()
+    {
+        // Setup
+        var data = new[]
+        {
+            "forward 5",
+            "down 5",
+            "forward 8",
+            "up 3",
+            "down 8",
+            "forward 2",
+        };
+        const string expected = "900";
+        var input = new Input(data);
+        var solver = new Day2Part2(input);
+
+        // Execute
+        var solution = solver.Solve();
+
+        // Assert
+        Assert.AreEqual(expected, solution);
+    }
 }
