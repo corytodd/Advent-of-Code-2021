@@ -115,7 +115,7 @@ public enum Direction {Up, Down, Forward}
 /// <summary>
 ///     Navigation unit
 /// </summary>
-public struct Navigation
+public record Navigation
 {
     /// <summary>
     ///     Direction of travel
@@ -131,7 +131,7 @@ public struct Navigation
 /// <summary>
 ///     Position in 2D space
 /// </summary>
-public struct Position
+public record Position
 {
     /// <summary>
     ///     Horizontal position in units relative to start
