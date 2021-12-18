@@ -32,6 +32,51 @@ public abstract class Day2 : BasePuzzle
             };
         }
     }
+    
+    protected enum Direction {Up, Down, Forward}
+
+    /// <summary>
+    ///     Navigation unit
+    /// </summary>
+    protected record Navigation
+    {
+        /// <summary>
+        ///     Direction of travel
+        /// </summary>
+        public Direction Direction;
+
+        /// <summary>
+        ///     Distance in units
+        /// </summary>
+        public int Distance;
+    }
+
+    /// <summary>
+    ///     Position in 2D space
+    /// </summary>
+    protected record Position
+    {
+        /// <summary>
+        ///     Horizontal position in units relative to start
+        /// </summary>
+        public int Horizontal;
+    
+    
+        /// <summary>
+        ///     Depth in units relative to start
+        /// </summary>
+        public int Depth;
+
+        /// <summary>
+        ///     Angle of travel in units relative to start
+        /// </summary>
+        public int Aim;
+    
+        /// <summary>
+        ///     Distance moved from start
+        /// </summary>
+        public int DistanceTraveled => Horizontal * Depth;
+    }
 }
 
 /// <summary>
@@ -107,50 +152,4 @@ public class Day2Part2 : Day2
 
         return position.DistanceTraveled.ToString();
     }
-}
-
-
-public enum Direction {Up, Down, Forward}
-
-/// <summary>
-///     Navigation unit
-/// </summary>
-public record Navigation
-{
-    /// <summary>
-    ///     Direction of travel
-    /// </summary>
-    public Direction Direction;
-
-    /// <summary>
-    ///     Distance in units
-    /// </summary>
-    public int Distance;
-}
-
-/// <summary>
-///     Position in 2D space
-/// </summary>
-public record Position
-{
-    /// <summary>
-    ///     Horizontal position in units relative to start
-    /// </summary>
-    public int Horizontal;
-    
-    
-    /// <summary>
-    ///     Depth in units relative to start
-    /// </summary>
-    public int Depth;
-
-    /// <summary>
-    ///     Angle of travel in units relative to start
-    /// </summary>
-    public int Aim;
-    
-    /// <summary>
-    ///     Distance moved from start
-    /// </summary>
-    public int DistanceTraveled => Horizontal * Depth;
 }
