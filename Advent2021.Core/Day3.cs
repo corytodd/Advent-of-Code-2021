@@ -90,3 +90,71 @@ public class Day3Part1 : Day3
         return consumption.ToString();
     }
 }
+
+/// <summary>
+///     Binary parsing
+/// </summary>
+public class Day3Part2 : Day3
+{
+    public Day3Part2(Input input) : base(2, input)
+    {
+    }
+
+    /// <inheritdoc />
+    public override string Solve()
+    {
+        var bits = GetBitCount();
+
+        var oxygenRating = FilterBinary(bits, true);
+        var co2ScrubberRating = FilterBinary(bits, false);
+
+        var lifeSupportRating = oxygenRating * co2ScrubberRating;
+
+        return lifeSupportRating.ToString();
+    }
+
+    /// <summary>
+    ///     Filter binary data by bit position until one remains
+    /// </summary>
+    /// <param name="bits">Count of bits in data</param>
+    /// <param name="mostCommon">True to keep most common bit</param>
+    /// <returns>Final filtered down value</returns>
+    private int FilterBinary(int bits, bool mostCommon)
+    {
+
+        // Oxygen generator rate: filter by bit, most common bit, 1 if tied
+        var hashedInput = new HashSet<int>(ReadBinaryIntegers());
+        for (var bit = bits - 1; bit >= 0; --bit)
+        {
+            var bitStateCount = new Dictionary<bool, int> { { true, 0 }, { false, 0 } };
+
+            // Stop when we have a single value
+            if (hashedInput.Count == 1)
+            {
+                break;
+            }
+
+            // Count bit state in the remaining set
+            foreach (var value in hashedInput)
+            {
+                var isSet = (value & (1 << bit)) != 0;
+                ++bitStateCount[isSet];
+            }
+            
+            // Decide which to keep.
+            var keepState = mostCommon switch
+            {
+                // Keep most common bits. If tied, select 1.
+                true => bitStateCount[true] >= bitStateCount[false] ? 1 : 0,
+                
+                // Keep lead common bit, If tied select 0.
+                false => bitStateCount[false] <= bitStateCount[true] ? 0 : 1
+            };
+
+            hashedInput.RemoveWhere(v => (v & (1 << bit)) != keepState << bit);
+        }
+
+
+        return hashedInput.First();
+    }
+}
