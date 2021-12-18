@@ -6,16 +6,17 @@
 public abstract class BasePuzzle
 {
     private readonly Input _puzzleInput;
-    
+
     /// <summary>
     ///     Create a new puzzle
     /// </summary>
     /// <param name="day">Puzzle id</param>
+    /// <param name="part">For multi-part days</param>
     /// <param name="input">Pre-allocated input data</param>
-    protected BasePuzzle(int day, Input input)
+    protected BasePuzzle(int day, int part, Input input)
     {
         Day = day;
-        Name = $"Day {day}";
+        Name = $"Day {day}.{part}";
         _puzzleInput = input;
     }
     
