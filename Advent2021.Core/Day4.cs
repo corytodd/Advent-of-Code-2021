@@ -80,6 +80,48 @@ public class Day4Part1 : Day4
     }
 }
 
+
+/// <summary>
+///     Bitmapping
+/// </summary>
+public class Day4Part2 : Day4
+{
+    public Day4Part2(Input input) : base(2, input)
+    {
+    }
+
+    /// <inheritdoc />
+    public override string Solve()
+    {
+        var winningBoards = new Stack<Board>(1024);
+
+        var allBoards = ReadBoards().ToList();
+
+        // Play all boards in parallel
+        foreach (var drawn in DrawnValues())
+        {
+            // Play moves first
+            foreach (var board in allBoards)
+            {
+                board.Play(drawn);
+            }
+            
+            // Remove winning boards from play, add to winning boards
+            foreach (var board in allBoards
+                         .Where(board => board.HasWin()))
+            {
+                winningBoards.Push(board);
+            }
+
+            allBoards.RemoveAll(b => b.HasWin());
+        }
+
+        winningBoards.TryPop(out var winner);
+        return winner?.Score().ToString() ?? string.Empty;
+    }
+}
+
+
 /// <summary>
 ///     A board's state can be represented in 25 bits
 ///     5 rows and 5 columns
