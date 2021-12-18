@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class Day2 : BasePuzzle
 {
-    protected Day2(int day, int part, Input input) : base(day, part, input)
+    protected Day2(int part, Input input) : base(2, part, input)
     {
     }
 
@@ -39,7 +39,7 @@ public abstract class Day2 : BasePuzzle
 /// </summary>
 public class Day2Part1 : Day2 
 {
-    public Day2Part1(Input input) : base(2, 1, input)
+    public Day2Part1(Input input) : base(1, input)
     {
     }
 
@@ -76,7 +76,7 @@ public class Day2Part1 : Day2
 /// </summary>
 public class Day2Part2 : Day2 
 {
-    public Day2Part2(Input input) : base(2, 2, input)
+    public Day2Part2(Input input) : base(2, input)
     {
     }
 

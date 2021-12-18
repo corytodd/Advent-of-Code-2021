@@ -6,7 +6,8 @@ BasePuzzle[] puzzles = {
     new Day1Part1(new Input(new FileInfo("data/day1_1_input.txt"))),
     new Day1Part2(new Input(new FileInfo("data/day1_2_input.txt"))),
     new Day2Part1(new Input(new FileInfo("data/day2_1_input.txt"))),
-    new Day2Part2(new Input(new FileInfo("data/day2_2_input.txt")))
+    new Day2Part2(new Input(new FileInfo("data/day2_2_input.txt"))),
+    new Day3Part1(new Input(new FileInfo("data/day3_1_input.txt")))
 };
 
 foreach (var puzzle in puzzles)
