@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class BasePuzzle
 {
-    private readonly Input _puzzleInput;
+    protected readonly Input _puzzleInput;
 
     /// <summary>
     ///     Create a new puzzle
