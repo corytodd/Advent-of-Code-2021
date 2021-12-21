@@ -42,4 +42,34 @@ public class ExtensionsTests
         // Assert
         Assert.AreEqual(expected, actual);
     }
+
+    [Test]
+    [RequiresPreviewFeatures]
+    public void MedianEven()
+    {
+        // Setup
+        var data = new[] { 1, 2, 3, 4 };
+        const int expect = 2;
+        
+        // Execute
+        var actual = data.Median<int, int>();
+        
+        // Assert
+        Assert.AreEqual(expect, actual);
+    }
+    
+    [Test]
+    [RequiresPreviewFeatures]
+    public void MedianOdd()
+    {
+        // Setup
+        var data = new[] { 1, 2, 3, 4, 5 };
+        const int expect = 3;
+        
+        // Execute
+        var actual = data.Median<int, int>();
+        
+        // Assert
+        Assert.AreEqual(expect, actual);
+    }
 }

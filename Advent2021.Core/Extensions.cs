@@ -20,4 +20,18 @@ public static class Extensions
 
         return result;
     }
+    
+    [RequiresPreviewFeatures]
+    public static TResult Median<T, TResult>(this IReadOnlyList<T> data)      
+        where T : INumber<T>
+        where TResult : INumber<TResult>
+    {
+        var sorted = data.ToList();
+        sorted.Sort();
+
+        var medianIndex = Math.Floor(sorted.Count / 2.0) ;
+        medianIndex = sorted.Count % 2 == 0 ? Math.Floor(medianIndex) - 1 : Math.Ceiling(medianIndex);
+        var result = TResult.Create(sorted[(int)medianIndex]);
+        return result;
+    }
 }
