@@ -10,7 +10,7 @@ public abstract class Day6 : BasePuzzle
 
     protected BigInteger PopulationAfterDays(int days)
     {
-        var initial = ReadInitialFish();
+        var initial = ReadSingleLineCommaIntegers();
 
         var fish = new BigInteger[9];
         foreach (var i in initial)
@@ -33,15 +33,10 @@ public abstract class Day6 : BasePuzzle
         return fish
             .Aggregate<BigInteger, BigInteger>(0, (current, n) => current + n);
     }
-
-    protected IEnumerable<int> ReadInitialFish()
-    {
-        return _puzzleInput.First().Split(',').Select(int.Parse);
-    }
 }
 
 /// <summary>
-///     Linear algebra
+///     Exponential growth in linear time
 /// </summary>
 public class Day6Part1 : Day6
 {
@@ -58,7 +53,7 @@ public class Day6Part1 : Day6
 }
 
 /// <summary>
-///     Linear algebra
+///     Exponential growth in linear time
 /// </summary>
 public class Day6Part2 : Day6
 {

@@ -27,7 +27,7 @@ public class Day1Part1 : Day1
     [RequiresPreviewFeatures]
     public override string Solve()
     {
-        var input = ReadIntegers().ToArray();
+        var input = ReadNewlineIntegers().ToArray();
         var diff = input.Diff<int, int>();
         var increasingCount = diff.Count(d => d > 0);
         return increasingCount.ToString();
@@ -49,7 +49,7 @@ public class Day1Part2 : Day1
     public override string Solve()
     {
         const int windowSize = 3;
-        var input = ReadIntegers().ToArray();
+        var input = ReadNewlineIntegers().ToArray();
         var segment = new ArraySegment<int>(input);
         var increasingCount = 0;
 

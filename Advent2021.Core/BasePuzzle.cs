@@ -37,11 +37,20 @@ public abstract class BasePuzzle
     public abstract string Solve();
 
     /// <summary>
-    ///     Read input as a list of integers
+    ///     Read input as a list of newline separated integers
     /// </summary>
     /// <returns>Input lines as integers</returns>
-    protected IEnumerable<int> ReadIntegers()
+    protected IEnumerable<int> ReadNewlineIntegers()
     {
         return _puzzleInput.Select(int.Parse);
+    }
+    
+    /// <summary>
+    ///     Read input as a list of comma separated integers
+    /// </summary>
+    /// <returns>Input lines as integers</returns>
+    protected IEnumerable<int> ReadSingleLineCommaIntegers()
+    {
+        return _puzzleInput.SelectMany(s => s.Split(',')).Select(int.Parse);
     }
 }
